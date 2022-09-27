@@ -1,6 +1,5 @@
 package fa.dfa;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import fa.State;
@@ -14,7 +13,11 @@ public class DFAState extends State{
         transitionMap = new LinkedHashMap<>();
     }
 
-    public void transition(char symb, DFAState toState){
+    public void insertTrans(char symb, DFAState toState){
         transitionMap.put(symb, toState);
+    }
+
+    public LinkedHashMap<Character, DFAState> getTrans() {
+        return transitionMap;
     }
 }

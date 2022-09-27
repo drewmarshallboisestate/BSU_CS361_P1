@@ -49,6 +49,17 @@ public class DFA implements DFAInterface{
         
     }
 
+    public DFAState getState(String state){
+        DFAState retState = null;
+        for(DFAState s: states){
+            String stateName = s.getName();
+            if(stateName.equals(state)){
+                retState = s;
+            }
+        }
+        return retState;
+    }
+
     @Override
     public void addFinalState(String name) {
         DFAState fState = new DFAState(name);
@@ -61,7 +72,7 @@ public class DFA implements DFAInterface{
     public void addTransition(String fromState, char onSymb, String toState) {
         DFAState stateFrom = new DFAState(fromState);
         DFAState stateTo = new DFAState(toState);
-        stateFrom.transition(onSymb, stateTo);
+        stateFrom.insertTrans(onSymb, stateTo);
 
         boolean flag = false;
         for(Character c: sigma) {
@@ -108,4 +119,8 @@ public class DFA implements DFAInterface{
         return null;
     }
     
+    public String toString() {
+        // TODO Modify the toString method to match required output
+        return null;
+    }
 }
