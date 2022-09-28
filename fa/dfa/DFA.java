@@ -137,9 +137,14 @@ public class DFA implements DFAInterface{
         // TODO: Check length of transition?
         // TODO: Check if empty string in transition with length greater than 1
 
-        for(char inputChar : inputChars) {    
+        for(char inputChar : inputChars) {
             // Transition to next state based on transition table.
             curr = getToState((DFAState)curr, inputChar);
+            
+            // If curr state is null, then that means the transition is not valid.
+            if (curr == null) {
+                return false;
+            }
         }
 
         // Determine if DFA in final state.
