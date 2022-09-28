@@ -5,6 +5,17 @@ import java.util.Set;
 
 import fa.State;
 
+/**
+ * Simulates a DFA by implementing the DFA interface.
+ * It works by performing the following services for the DFA:
+ * Storing states including start/final
+ * Storing DFA alphabet
+ * Storing transitions into each DFA state
+ * Determining if a string is in the DFA's language
+ * Outputting DFA 5-tuple to string
+ * @author Drew Marshall
+ * @author Steven Lineses
+ */
 public class DFA implements DFAInterface{
 
     //Need to instantiate the 5-tuple with variables to hold values
@@ -12,6 +23,7 @@ public class DFA implements DFAInterface{
     private LinkedHashSet<DFAState> finalStates; // finalStates = F = final states (if any)
     private LinkedHashSet<Character> sigma; //sigma = alphabet 
     private DFAState startState; //startState = q0 = starting state
+    private boolean hasFinalState = false; // Used to check if DFA has at least one final state
 
     public DFA() {
         states = new LinkedHashSet<>();
@@ -65,15 +77,34 @@ public class DFA implements DFAInterface{
         DFAState fState = new DFAState(name);
         finalStates.add(fState);
         states.add(fState);
-        
+        hasFinalState = true;
     }
 
     @Override
     public void addTransition(String fromState, char onSymb, String toState) {
-        DFAState stateFrom = new DFAState(fromState);
-        DFAState stateTo = new DFAState(toState);
-        stateFrom.insertTrans(onSymb, stateTo);
+        // DFAState stateFrom = new DFAState(fromState);
+        // DFAState stateTo = new DFAState(toState);
+        // stateFrom.insertTrans(onSymb, stateTo);
 
+        DFAState stateFrom = null;
+        DFAState stateTo = null;
+
+        // Get required states from DFA.
+        for (DFAState state : states) {
+            if (state.getName().equals(fromState)) {
+                stateFrom = state;
+            }
+            if (state.getName().equals(toState)) {
+                stateTo = state;
+            }
+        }
+
+        // Ensure that both the from and to states in a transition exist in the DFA's states.
+        if (stateFrom != null && stateTo != null) {
+            stateFrom.insertTrans(onSymb, stateTo);
+        }
+
+        // Check if character exists in alphabet and add it if it doesn't.
         boolean flag = false;
         for(Character c: sigma) {
             if(c.equals(onSymb)) {
@@ -84,7 +115,6 @@ public class DFA implements DFAInterface{
         if(!flag) {
             sigma.add(onSymb);
         }
-        
     }
 
     @Override
@@ -109,14 +139,43 @@ public class DFA implements DFAInterface{
 
     @Override
     public boolean accepts(String s) {
-        // TODO Auto-generated method stub
-        return false;
+        // Split `s` into separate chars for iteration.
+        char[] inputChars = s.toCharArray();
+
+        // Start at start state
+        State curr = startState;
+
+        // TODO: Check for empty string and handle appropriately.
+        // TODO: Check length of transition?
+        // TODO: Check if empty string in transition with length greater than 1
+
+        for(char inputChar : inputChars) {
+            // Transition to next state based on transition table.
+            curr = getToState((DFAState)curr, inputChar);
+            
+            // If curr state is null, then that means the transition is not valid.
+            if (curr == null) {
+                return false;
+            }
+        }
+
+        // Determine if DFA in final state.
+        return isFinalState(curr);
+    }
+
+    /**
+     * Checks if the provided state is a final state.
+     * 
+     * @param state The state to check if it is a final state
+     * @return True if state is final else false
+     */
+    private boolean isFinalState(State state) {
+        return finalStates.contains(state);
     }
 
     @Override
     public State getToState(DFAState from, char onSymb) {
-        // TODO Auto-generated method stub
-        return null;
+        return from.getTrans().get(onSymb);
     }
     
     public String toString() {
