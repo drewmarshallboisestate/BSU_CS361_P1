@@ -13,6 +13,7 @@ public class DFA implements DFAInterface{
     private LinkedHashSet<DFAState> finalStates; // finalStates = F = final states (if any)
     private LinkedHashSet<Character> sigma; //sigma = alphabet 
     private DFAState startState; //startState = q0 = starting state
+    private boolean hasFinalState = false; // Used to check if DFA has at least one final state
 
     public DFA() {
         states = new LinkedHashSet<>();
@@ -66,7 +67,7 @@ public class DFA implements DFAInterface{
         DFAState fState = new DFAState(name);
         finalStates.add(fState);
         states.add(fState);
-        
+        hasFinalState = true;
     }
 
     @Override
