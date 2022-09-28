@@ -5,7 +5,17 @@ import java.util.Set;
 
 import fa.State;
 
-// TODO: Add classdoc
+/**
+ * Simulates a DFA by implementing the DFA interface.
+ * It works by performing the following services for the DFA:
+ * Storing states including start/final
+ * Storing DFA alphabet
+ * Storing transitions into each DFA state
+ * Determining if a string is in the DFA's language
+ * Outputting DFA 5-tuple to string
+ * @author Drew Marshall
+ * @author Steven Lineses
+ */
 public class DFA implements DFAInterface{
 
     //Need to instantiate the 5-tuple with variables to hold values
@@ -89,6 +99,7 @@ public class DFA implements DFAInterface{
             }
         }
 
+        // Ensure that both the from and to states in a transition exist in the DFA's states.
         if (stateFrom != null && stateTo != null) {
             stateFrom.insertTrans(onSymb, stateTo);
         }
