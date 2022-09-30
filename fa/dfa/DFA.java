@@ -83,10 +83,6 @@ public class DFA implements DFAInterface{
 
     @Override
     public void addTransition(String fromState, char onSymb, String toState) {
-        // DFAState stateFrom = new DFAState(fromState);
-        // DFAState stateTo = new DFAState(toState);
-        // stateFrom.insertTrans(onSymb, stateTo);
-
         DFAState stateFrom = null;
         DFAState stateTo = null;
 
@@ -155,14 +151,10 @@ public class DFA implements DFAInterface{
         // Start at start state
         DFAState curr = startState;
 
-        // TODO: Check for empty string and handle appropriately.
-        // TODO: Check length of transition?
-        // TODO: Check if empty string in transition with length greater than 1
-
-        if(emptyFlag && finalStates.contains(curr)){
+        // Following conditions must be met in order for DFA to accept empty string.
+        if(emptyFlag && isFinalState(curr)){
             return true;
         }
-
 
         for(char inputChar : inputChars) {
             // Transition to next state based on transition table.
