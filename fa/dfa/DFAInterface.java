@@ -12,9 +12,9 @@ public interface DFAInterface extends FAInterface{
 	 * Q = { a b }
 	 * Sigma = { 0 1 }
 	 * delta =
-	 *		0	1	
-	 *	a	a	b	
-	 *	b	a	b	
+	 *			0	1	
+	 *		a	a	b	
+	 *		b	a	b	
 	 * q0 = a
 	 * F = { b }
 	 * 

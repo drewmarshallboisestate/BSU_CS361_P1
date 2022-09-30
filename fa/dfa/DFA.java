@@ -1,9 +1,10 @@
 package fa.dfa;
 
+import fa.State;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import fa.State;
+
 
 /**
  * Simulates a DFA by implementing the DFA interface.
@@ -144,19 +145,28 @@ public class DFA implements DFAInterface{
             return false;
         }
 
+        boolean emptyFlag = false;
+        if(s.equals("e")){
+            emptyFlag = true;
+        }
         // Split `s` into separate chars for iteration.
         char[] inputChars = s.toCharArray();
 
         // Start at start state
-        State curr = startState;
+        DFAState curr = startState;
 
         // TODO: Check for empty string and handle appropriately.
         // TODO: Check length of transition?
         // TODO: Check if empty string in transition with length greater than 1
 
+        if(emptyFlag && finalStates.contains(curr)){
+            return true;
+        }
+
+
         for(char inputChar : inputChars) {
             // Transition to next state based on transition table.
-            curr = getToState((DFAState)curr, inputChar);
+            curr = getToState(curr, inputChar);
             
             // If curr state is null, then that means the transition is not valid.
             if (curr == null) {
@@ -179,7 +189,7 @@ public class DFA implements DFAInterface{
     }
 
     @Override
-    public State getToState(DFAState from, char onSymb) {
+    public DFAState getToState(DFAState from, char onSymb) {
         return from.getTrans().get(onSymb);
     }
     

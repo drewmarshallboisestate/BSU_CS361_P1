@@ -1,7 +1,8 @@
 package fa.dfa;
 
-import java.util.LinkedHashMap;
+import java.util.*;
 import fa.State;
+
 
 /**
  * Models a DFA state containing its name and transitions.
@@ -21,7 +22,7 @@ public class DFAState extends State {
         transitionMap.put(symb, toState);
     }
 
-    public LinkedHashMap<Character, DFAState> getTrans() {
+    public Map<Character, DFAState> getTrans() {
         return transitionMap;
     }
 }
