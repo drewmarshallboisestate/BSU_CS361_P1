@@ -1,10 +1,14 @@
 package fa.dfa;
 
 import java.util.LinkedHashMap;
-
 import fa.State;
 
-public class DFAState extends State{
+/**
+ * Models a DFA state containing its name and transitions.
+ * 
+ * @author Drew Marshall
+ */
+public class DFAState extends State {
     
     private LinkedHashMap<Character, DFAState> transitionMap;
 
