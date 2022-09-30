@@ -186,18 +186,46 @@ public class DFA implements DFAInterface{
     public String toString() {
         // TODO Modify the toString method to match required output
         String retString = "";
-        retString += "Q = {";
+        retString += "Q = { ";
+
+        //Add each state from the states set
         for(DFAState s: states){
             retString += s.getName() + " ";
         }
 
-        retString += "}\nSigma = ";
+        retString += " }\nSigma = { ";
 
+        //Add each character from the alphabet
         for(Character c: sigma){
             retString += c + " ";
         }
 
-        retString += "}\ndelta =";
+        retString += "}\ndelta =\n";
+
+        //Add the transition table 
+        retString += "\t\t";
+        for(Character c: sigma){
+            retString += c + "\t";
+        }
+        retString += "\n";
+        for(DFAState s: states){
+            retString += "\t" + s.getName() + "\t";
+            for(Character c: sigma){
+                retString += getToState(s, c).getName() + "\t";
+            }
+            retString += "\n";
+        }
+
+        //Add the initial state
+        retString += "qo = " + startState.getName() + "\n";
+
+        //Add final state
+        retString += "F = { ";
+        for(DFAState f: finalStates){
+            retString += f.getName() + " ";
+        }
+        retString += " } \n";
+
 
         return retString;
     }
