@@ -17,7 +17,7 @@ import java.util.Set;
  * @author Drew Marshall
  * @author Steven Lineses
  */
-public class DFA implements DFAInterface{
+public class DFA implements DFAInterface {
 
     //Need to instantiate the 5-tuple with variables to hold values
     private LinkedHashSet<DFAState> states; //states = Q = all states
@@ -59,7 +59,6 @@ public class DFA implements DFAInterface{
     public void addState(String name) {
         DFAState state = new DFAState(name);
         states.add(state);
-        
     }
 
     public DFAState getState(String state){
@@ -186,7 +185,6 @@ public class DFA implements DFAInterface{
     }
     
     public String toString() {
-        // TODO Modify the toString method to match required output
         String retString = "";
         retString += "Q = { ";
 
@@ -195,7 +193,7 @@ public class DFA implements DFAInterface{
             retString += s.getName() + " ";
         }
 
-        retString += " }\nSigma = { ";
+        retString += "}\nSigma = { ";
 
         //Add each character from the alphabet
         for(Character c: sigma){
@@ -213,7 +211,9 @@ public class DFA implements DFAInterface{
         for(DFAState s: states){
             retString += "\t" + s.getName() + "\t";
             for(Character c: sigma){
-                retString += getToState(s, c).getName() + "\t";
+                // Check if transition exists before getting its name to avoid null pointer exception.
+                String transitionName = getToState(s, c) == null ? "" : getToState(s, c).getName();
+                retString += transitionName + "\t";
             }
             retString += "\n";
         }
@@ -226,8 +226,7 @@ public class DFA implements DFAInterface{
         for(DFAState f: finalStates){
             retString += f.getName() + " ";
         }
-        retString += " } \n";
-
+        retString += "} \n";
 
         return retString;
     }
