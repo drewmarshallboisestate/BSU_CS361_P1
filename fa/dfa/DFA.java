@@ -139,6 +139,11 @@ public class DFA implements DFAInterface{
 
     @Override
     public boolean accepts(String s) {
+        // If DFA has no final states, then any input is rejected.
+        if (!hasFinalState) {
+            return false;
+        }
+
         // Split `s` into separate chars for iteration.
         char[] inputChars = s.toCharArray();
 
