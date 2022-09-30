@@ -61,17 +61,6 @@ public class DFA implements DFAInterface {
         states.add(state);
     }
 
-    public DFAState getState(String state){
-        DFAState retState = null;
-        for(DFAState s: states){
-            String stateName = s.getName();
-            if(stateName.equals(state)){
-                retState = s;
-            }
-        }
-        return retState;
-    }
-
     @Override
     public void addFinalState(String name) {
         DFAState fState = new DFAState(name);
@@ -86,14 +75,9 @@ public class DFA implements DFAInterface {
         DFAState stateTo = null;
 
         // Get required states from DFA.
-        for (DFAState state : states) {
-            if (state.getName().equals(fromState)) {
-                stateFrom = state;
-            }
-            if (state.getName().equals(toState)) {
-                stateTo = state;
-            }
-        }
+        stateFrom = getState(fromState);
+        stateTo = getState(toState);
+
 
         // Ensure that both the from and to states in a transition exist in the DFA's states.
         if (stateFrom != null && stateTo != null) {
@@ -177,6 +161,23 @@ public class DFA implements DFAInterface {
      */
     private boolean isFinalState(State state) {
         return finalStates.contains(state);
+    }
+
+    /**
+     * Get DFA state based on DFA state name.
+     * 
+     * @param state
+     * @return DFA state if one exists with the provided state name
+     */
+    private DFAState getState(String state){
+        DFAState retState = null;
+        for(DFAState s: states){
+            String stateName = s.getName();
+            if(stateName.equals(state)){
+                retState = s;
+            }
+        }
+        return retState;
     }
 
     @Override
