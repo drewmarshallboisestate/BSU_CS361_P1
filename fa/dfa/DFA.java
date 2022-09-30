@@ -180,6 +180,20 @@ public class DFA implements DFAInterface{
     
     public String toString() {
         // TODO Modify the toString method to match required output
-        return null;
+        String retString = "";
+        retString += "Q = {";
+        for(DFAState s: states){
+            retString += s.getName() + " ";
+        }
+
+        retString += "}\nSigma = ";
+
+        for(Character c: sigma){
+            retString += c + " ";
+        }
+
+        retString += "}\ndelta =";
+
+        return retString;
     }
 }
