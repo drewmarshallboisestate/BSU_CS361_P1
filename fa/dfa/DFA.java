@@ -55,12 +55,20 @@ public class DFA implements DFAInterface {
         }
     }
 
+    /**
+	 * Adds a non-final, not initial state to the states set
+	 * @param name is the label of the state 
+	 */
     @Override
     public void addState(String name) {
         DFAState state = new DFAState(name);
         states.add(state);
     }
 
+    /**
+	 * Adds a final state to the FinalStates set
+	 * @param name is the label of the state
+	 */
     @Override
     public void addFinalState(String name) {
         DFAState fState = new DFAState(name);
@@ -69,6 +77,12 @@ public class DFA implements DFAInterface {
         hasFinalState = true;
     }
 
+    /**
+	 * Adds the transition to the sigma set, otherwise known as constructing the alphabet
+	 * @param fromState is the label of the state where the transition starts
+	 * @param onSymb is the symbol from the DFA's alphabet.
+	 * @param toState is the label of the state where the transition ends
+	 */
     @Override
     public void addTransition(String fromState, char onSymb, String toState) {
         DFAState stateFrom = null;
@@ -97,26 +111,48 @@ public class DFA implements DFAInterface {
         }
     }
 
+    /**
+	 * Getter for Q
+	 * @return a set of states that DFA has
+	 */
     @Override
     public Set<? extends State> getStates() {
         return states;
     }
 
+    /**
+	 * Getter for F
+	 * @return a set of final states that DFA has
+	 */
     @Override
     public Set<? extends State> getFinalStates() {
         return finalStates;
     }
 
+    /**
+	 * Getter for q0
+	 * @return the start state of DFA
+	 */
     @Override
     public State getStartState() {
         return startState;
     }
 
+    /**
+	 * Getter for Sigma
+	 * @return the alphabet of DFA
+	 */
     @Override
     public Set<Character> getABC() {
         return sigma;
     }
 
+    /**
+	 * Simulates a DFA on input s to determine
+	 * whether the DFA accepts s.
+	 * @param s - the input string
+	 * @return true if s in the language of the DFA and false otherwise
+	 */
     @Override
     public boolean accepts(String s) {
         // If DFA has no final states, then any input is rejected.
@@ -180,11 +216,33 @@ public class DFA implements DFAInterface {
         return retState;
     }
 
+    /**
+	 * Uses transition function delta of FA
+	 * @param from the source state
+	 * @param onSymb the label of the transition
+	 * @return the sink state.
+	 */
     @Override
     public DFAState getToState(DFAState from, char onSymb) {
         return from.getTrans().get(onSymb);
     }
     
+    /**
+	 * Construct the textual representation of the DFA, for example
+	 * A simple two state DFA
+	 * Q = { a b }
+	 * Sigma = { 0 1 }
+	 * delta =
+	 *			0	1	
+	 *		a	a	b	
+	 *		b	a	b	
+	 * q0 = a
+	 * F = { b }
+	 * 
+	 * The order of the states and the alphabet is the order
+	 * in which they were instantiated in the DFA.
+	 * @return String representation of the DFA
+	 */
     public String toString() {
         String retString = "";
         retString += "Q = { ";
