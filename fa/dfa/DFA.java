@@ -4,8 +4,6 @@ import fa.State;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-
-
 /**
  * Simulates a DFA by implementing the DFA interface.
  * It works by performing the following services for the DFA:
@@ -14,6 +12,7 @@ import java.util.Set;
  * Storing transitions into each DFA state
  * Determining if a string is in the DFA's language
  * Outputting DFA 5-tuple to string
+ * 
  * @author Drew Marshall
  * @author Steven Lineses
  */
@@ -44,7 +43,7 @@ public class DFA implements DFAInterface {
         //if not we can just initialize it and add it
         for(DFAState s: states) {
             String stateName = s.getName();
-            if(stateName.equals(name)){ //Start state is already in states so we just have to update it
+            if(stateName.equals(name)) { //Start state is already in states so we just have to update it
                 startState = s;
             }       
         }
@@ -91,7 +90,6 @@ public class DFA implements DFAInterface {
         // Get required states from DFA.
         stateFrom = getState(fromState);
         stateTo = getState(toState);
-
 
         // Ensure that both the from and to states in a transition exist in the DFA's states.
         if (stateFrom != null && stateTo != null) {
@@ -171,7 +169,7 @@ public class DFA implements DFAInterface {
         DFAState curr = startState;
 
         // Following conditions must be met in order for DFA to accept empty string.
-        if(emptyFlag && isFinalState(curr)){
+        if(emptyFlag && isFinalState(curr)) {
             return true;
         }
 
@@ -202,7 +200,7 @@ public class DFA implements DFAInterface {
     /**
      * Get DFA state based on DFA state name.
      * 
-     * @param state
+     * @param state The state to retrieve from the DFAs existing states
      * @return DFA state if one exists with the provided state name
      */
     private DFAState getState(String state){
@@ -218,9 +216,10 @@ public class DFA implements DFAInterface {
 
     /**
 	 * Uses transition function delta of FA
-	 * @param from the source state
-	 * @param onSymb the label of the transition
-	 * @return the sink state.
+     * 
+	 * @param from The source state
+	 * @param onSymb The label of the transition
+	 * @return The sink state.
 	 */
     @Override
     public DFAState getToState(DFAState from, char onSymb) {
@@ -241,6 +240,7 @@ public class DFA implements DFAInterface {
 	 * 
 	 * The order of the states and the alphabet is the order
 	 * in which they were instantiated in the DFA.
+     * 
 	 * @return String representation of the DFA
 	 */
     public String toString() {
