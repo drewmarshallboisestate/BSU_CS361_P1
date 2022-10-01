@@ -2,14 +2,11 @@ Project 1: Modeling Deterministic Finite Automata
 
 * Author: Steven Lineses, Drew Marshall
 * Class: CS361 Section
-* Semester: Fall 2020
+* Semester: Fall 2022
 
 ## Overview
 
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally you should be pulling this
-right from the project specification. Please don't just cut and
-paste, but paraphrase what is stated in the project specification.
+Use an existing Java framework to simulate a deterministic finite automata model.
 
 ## Reflection
 
@@ -23,10 +20,13 @@ project. Answer the following questions (but feel free to add other insights):
 
 ## Compiling and Using
 
-This section should tell the user how to compile your code.  It is
-also appropriate to instruct the user how to use your code. Does your
-program require user input? If so, what does your user need to know
-about it to use it as quickly as possible?
+Compile the program:
+
+`javac fa/dfa/DFADriver.java`
+
+Run the program and provide a test case:
+
+`java fa.dfa.DFADriver ./tests/p1tc1.txt`
 
 ## Sources used
 

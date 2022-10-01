@@ -3,7 +3,6 @@ package fa.dfa;
 import java.util.*;
 import fa.State;
 
-
 /**
  * Models a DFA state containing its name and transitions.
  * 
