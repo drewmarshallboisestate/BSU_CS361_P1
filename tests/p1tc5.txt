@@ -8,8 +8,8 @@ aaccb
 baccc
 bacc
 cbac
-a 
-ba 
+a
+ba
 bac 
 cba 
-cc 
+cc

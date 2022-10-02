@@ -52,6 +52,30 @@ as soon as I recieve the project and not procrastinate. That way if I have quest
 struggling with something I can ask for help/guidance. The sooner you start the sooner you 
 find out what you need help with and therefore the sooner you can finish!
 
+##### Steven' Reflection
+Breaking the project into very small units of worked was effective. I put the steps
+of each problem into comments and wrote code line by line underneath each comment.
+Reading the entire project specification before starting the project was also wise.
+I needed some clarification on DFAs that accept empty string only versus accepting
+empty string as well as other strings in the alphabet. Also, working on this project
+enforced the difference between a DFA that accepts the empty string versus the empty
+language.
+
+I created some helper methods for common tasks such as finding a state from the DFAs
+existing state. Also, I used visual studio code and connected it to the onyx server
+which allowed for full debugging suite. This way I was able to step through each
+call stack one by one when an exception occured. Watching variables change as I stepped
+through the code helped as well. In addition, I wrote a python script to encode
+the project test cases to JFLAP files which I used to check if the input strings
+were being accepted/rejected correctly.
+
+I would probably try to use a data structure with faster retrieval based on a key
+value. However, order was to be preserved so some looping through the states was
+required. I would probably look for ways to break the functions into smaller,
+more explicit helper methods instead of a few larger ones. If I could go back in
+time, I would start the project earlier. This was pretty fun and there are some areas
+of that code that could be optimized.
+
 ## Compiling and Using
 
 To compile the program simply use a single command since the .java files are 
@@ -82,6 +106,11 @@ as the test file is shown below:
 * https://www.programiz.com/java-programming/set
 * https://stackoverflow.com/questions/21177722/how-to-return-a-generic-map-from-a-method-in-java
 * https://stackoverflow.com/questions/37485369/java-8-how-to-compare-all-elements-of-a-set
+
+##### Steven's Sources
+* https://www.geeksforgeeks.org/iterate-over-the-characters-of-a-string-in-java/
+* https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
+* https://www.geeksforgeeks.org/compare-two-strings-in-java/
 
 As well, I had some friends who have taken the class before help walk me
 through the set up to understand how the DFAState would work and how to frame 
